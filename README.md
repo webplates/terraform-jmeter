@@ -138,7 +138,8 @@ Once you have your cluster up you are ready to run your test plans.
 As a first step copy your test plan to the master server:
 
 ``` bash
-$ scp -i .ssh/jmeter test.jmx root@1.2.3.4:
+$ MASTER=$(terraform output master_address)
+$ scp -i .ssh/jmeter test.jmx root@$MASTER:
 ```
 
 **Pro tip**: Use `-o IdentitiesOnly=yes` if you have multiple SSH keys, otherwise you might get *Too many authentication failures* error.
@@ -148,7 +149,7 @@ $ scp -i .ssh/jmeter test.jmx root@1.2.3.4:
 After uploading the test plan to the master host you can login and execute the test:
 
 ``` bash
-$ ssh -i .ssh/jmeter root@1.2.3.4
+$ ssh -i .ssh/jmeter root@$MASTER
 # /opt/jmeter/bin/jmeter -n -r -t test.jmx -l results.jtl
 ```
 
@@ -163,7 +164,7 @@ Parameter explanation:
 When the tests are finished you can download the results using SCP:
 
 ``` bash
-$ scp -i .ssh/jmeter root@1.2.3.4:results.jtl .
+$ scp -i .ssh/jmeter root@$MASTER:results.jtl .
 ```
 
 Alternatively you can use the [run.sh](run.sh) script from this repository to skip the manual process:
