@@ -11,15 +11,17 @@
 
 # Author: Steve Kamerman <steve at scientiamobile dot com>
 # License: MIT (http://opensource.org/licenses/MIT)
-# https://gist.github.com/kamermans/2830209
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Apache JMeter Remote Server"
 NAME=jmeter
 JMETER_PATH=/opt/jmeter
+# Change this to your IP
+JMETER_IP=127.0.0.1
+JMETER_PORT=1099
 DAEMON="$JMETER_PATH/bin/$NAME"
-DAEMON_ARGS=""
+DAEMON_ARGS="-Djava.rmi.server.hostname=$JMETER_IP -Dserver_port=$JMETER_PORT -s -j $JMETER_PATH/bin/jmeter-server.log"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
