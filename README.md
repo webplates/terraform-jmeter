@@ -213,3 +213,8 @@ costs you $99.95 a month.
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
+
+
+## Credits
+
+Thanks to @kamermans for the [startup script](https://gist.github.com/kamermans/2830209).
