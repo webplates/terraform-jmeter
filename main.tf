@@ -32,11 +32,11 @@ resource "digitalocean_droplet" "jmeter_slave" {
     }
 
     provisioner "remote-exec" {
-        script = "install.sh"
+        script = "resources/install.sh"
     }
 
     provisioner "file" {
-        source = "init"
+        source = "resources/init"
         destination = "/etc/init.d/jmeter"
     }
 
@@ -71,7 +71,7 @@ resource "digitalocean_droplet" "jmeter_master" {
     }
 
     provisioner "remote-exec" {
-        script = "install.sh"
+        script = "resources/install.sh"
     }
 
     provisioner "remote-exec" {

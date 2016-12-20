@@ -21,6 +21,18 @@ You also need a [DigitalOcean](https://www.digitalocean.com) account and an API 
 To create test plans locally, you should [install JMeter](http://jmeter.apache.org/download_jmeter.cgi) as well.
 
 
+### TL;DR
+
+``` bash
+$ ./scripts/setup.sh DIGITAL_OCEAN_TOKEN
+$ terraform apply
+$ ./scripts/run.sh path/to/test.jmx path/to/save/results.jtl
+$ terraform destroy
+```
+
+Enjoy!
+
+
 ## Usage
 
 ### SSH
@@ -53,7 +65,7 @@ do_token = "TOKEN"
 Or use the following oneliner:
 
 ``` bash
-$ echo 'do_token = "TOKEN"' >> terraform.tfvars
+$ echo "do_token = \"TOKEN\"" >> terraform.tfvars
 ```
 
 Other configuration options you can set:
@@ -75,7 +87,7 @@ slave_count = 3
 slave_size = "512mb"
 master_size = "512mb"
 allowed_regions = [
-    "ams1",
+    #"ams1",
     "ams2",
     "ams3",
     "blr1",
@@ -92,6 +104,12 @@ allowed_regions = [
 ```
 
 Choose the size and count settings based on the expected number and complexity of your tests.
+
+For a quick setup you can use [setup.sh](scripts/setup.sh) script from this repository:
+
+``` bash
+$ ./scripts/setup.sh TOKEN
+```
 
 
 ### Setting up the cluster
@@ -167,10 +185,10 @@ When the tests are finished you can download the results using SCP:
 $ scp -i .ssh/jmeter root@$MASTER:results.jtl .
 ```
 
-Alternatively you can use the [run.sh](run.sh) script from this repository to skip the manual process:
+Alternatively you can use [run.sh](scripts/run.sh) script from this repository to skip the manual process:
 
 ``` bash
-$ ./run.sh test.jmx results.jtl
+$ ./scripts/run.sh test.jmx results.jtl
 ```
 
 
