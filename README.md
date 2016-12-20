@@ -141,8 +141,9 @@ As a first step copy your test plan to the master server:
 $ scp -i .ssh/jmeter test.jmx root@1.2.3.4:
 ```
 
-**Pro tip: Use `-o IdentitiesOnly=yes` if you have multiple SSH keys, otherwise you might get *Too many authentication failures* error.
-**Less pro tip: Use `-oStrictHostKeyChecking=no` to skip checking the host key.
+**Pro tip**: Use `-o IdentitiesOnly=yes` if you have multiple SSH keys, otherwise you might get *Too many authentication failures* error.
+
+**Less pro tip**: Use `-oStrictHostKeyChecking=no` to skip checking the host key.
 
 After uploading the test plan to the master host you can login and execute the test:
 
