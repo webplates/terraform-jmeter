@@ -185,6 +185,12 @@ When the tests are finished you can download the results using SCP:
 $ scp -i .ssh/jmeter root@$MASTER:results.jtl .
 ```
 
+**Important!** If you plan to run tests more than once make sure to clean up previous results before running new tests, otherwise you will see data from previous tests in `result.jtl`.
+
+``` bash
+$ ssh -i .ssh/jmeter root@$MASTER rm -vf results.jtl
+```
+
 Alternatively you can use [run.sh](scripts/run.sh) script from this repository to skip the manual process:
 
 ``` bash
