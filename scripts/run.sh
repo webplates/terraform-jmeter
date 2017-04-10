@@ -15,5 +15,6 @@ if [ -z "$2" ]; then
 fi
 
 scp -i .ssh/jmeter -o IdentitiesOnly=yes -oStrictHostKeyChecking=no $1 root@$MASTER:test.jmx
+ssh -i .ssh/jmeter -o IdentitiesOnly=yes -oStrictHostKeyChecking=no root@$MASTER rm -vf results.jtl
 ssh -i .ssh/jmeter -o IdentitiesOnly=yes -oStrictHostKeyChecking=no root@$MASTER /opt/jmeter/bin/jmeter -n -r -t test.jmx -l results.jtl
 scp -i .ssh/jmeter -o IdentitiesOnly=yes -oStrictHostKeyChecking=no root@$MASTER:results.jtl $2
